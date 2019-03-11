@@ -1,0 +1,358 @@
+
+
+.input-row {
+    margin-top: 20px;
+}
+
+.input-text {
+    display: inline;    
+}
+
+.input {
+    display: inline;
+}
+
+.result-row {
+    margin-top: 20px;
+}
+
+.result-text {
+    display: inline;    
+}
+
+.result {
+    display: inline;
+}
+
+.calc-buttons {
+    margin-top : 50px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 750px;
+    width: 700px;
+    background-image: url("calculator.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+#b0 {
+    position: absolute;
+    top: 696px;
+    left: 835px;
+    background: url('b0.png');    
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 35px;
+    width: 45px;
+    border: none;
+    outline: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-indent: -9999px;            
+}
+
+#b1 {
+    position: absolute;
+    top: 653.5px;
+    left: 835px;
+    background: url('b1.png');    
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 35px;
+    width: 45px;
+    border: none;
+    outline: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-indent: -9999px;            
+}
+
+#b2 {
+    position: absolute;
+    top: 653.5px;
+    left: 882.5px;
+    background: url('b2.png');    
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 35px;
+    width: 45px;
+    border: none;
+    outline: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-indent: -9999px;            
+}
+
+#b3 {
+    position: absolute;
+    top: 653.5px;
+    left: 932px;
+    background: url('b3.png');    
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 35px;
+    width: 45px;
+    border: none;
+    outline: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-indent: -9999px;            
+}
+
+#b4 {
+    position: absolute;
+    top: 610px;
+    left: 835px;
+    background: url('b4.png');    
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 35px;
+    width: 45px;
+    border: none;
+    outline: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-indent: -9999px;            
+}
+
+#b5 {
+    position: absolute;
+    top: 613px;
+    left: 882.5px;
+    background: url('b5.png');    
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 35px;
+    width: 45px;
+    border: none;
+    outline: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-indent: -9999px;            
+}
+
+#b6 {
+    position: absolute;
+    top: 611px;
+    left: 932px;
+    background: url('b6.png');    
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 35px;
+    width: 45px;
+    border: none;
+    outline: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-indent: -9999px;            
+}
+
+#b7 {
+    position: absolute;
+    top: 568px;
+    left: 835px;
+    background: url('b7.png');    
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 35px;
+    width: 45px;
+    border: none;
+    outline: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-indent: -9999px;            
+}
+
+#b8 {
+    position: absolute;
+    top: 570px;
+    left: 882.5px;
+    background: url('b8.png');    
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 35px;
+    width: 45px;
+    border: none;
+    outline: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-indent: -9999px;            
+}
+
+#b9 {
+    position: absolute;
+    top: 567.5px;
+    left: 931px;
+    background: url('b9.png');    
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 35px;
+    width: 45px;
+    border: none;
+    outline: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-indent: -9999px;            
+}
+
+#bdot {
+    position: absolute;
+    top: 698px;
+    left: 882.5px;
+    background: url('bdot.png');    
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 35px;
+    width: 45px;
+    border: none;
+    outline: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-indent: -9999px;            
+} 
+
+#bmul {
+    position: absolute;
+    top: 562px;
+    left: 985.8px;
+    background: url('bmul.png');    
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 35px;
+    width: 45px;
+    border: none;
+    outline: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-indent: -9999px;            
+}
+
+#bdiv {
+    position: absolute;
+    top: 525px;
+    left: 986.5px;
+    background: url('bdiv.png');    
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 35px;
+    width: 45px;
+    border: none;
+    outline: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-indent: -9999px;            
+} 
+
+#badd {
+    position: absolute;
+    top: 634px;
+    left: 984px;
+    background: url('badd.png');    
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 35px;
+    width: 45px;
+    border: none;
+    outline: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-indent: -9999px;            
+}
+
+#bsub {
+    position: absolute;
+    top: 599px;
+    left: 984.5px ;
+    background: url('bsub.png');    
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 35px;
+    width: 45px;
+    border: none;
+    outline: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-indent: -9999px;            
+}
+
+#benter {
+    position: absolute;
+    top: 670px;
+    left: 986px;
+    background: url('benter.png');    
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 39px;
+    width: 45px;
+    border: none;
+    outline: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-indent: -9999px;            
+}
+
+#bclear {
+    position: absolute;
+    top: 452px;
+    left: 986px;
+    background: url('bclear.png');    
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 35px;
+    width: 45px;
+    border: none;
+    outline: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-indent: -9999px;            
+  }
+
+.bback {
+    position: absolute;
+    top: 459px;
+    left: 51.64%;
+    background: url('bback.png');    
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 35px;
+    width: 45px;
+    border: none;
+    outline: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-indent: -9999px;            
+}
+  
+p {
+    width: 210px;
+}
+
+.input {
+    position: absolute;
+    top: 130px;
+    left: 800px;
+    overflow: hidden;
+    font-weight: bold;
+}
+
+.result {
+    position: absolute;
+    top: 160px;
+    left: 800px;
+    overflow: hidden;
+    text-align: right;
+    font-weight: bold;
+}
+
+
+  button:hover {
+    transform: scale(1.1);
+  }
+
+
+  button:active {
+    transform: scale(1);
+  }
+
+ 
