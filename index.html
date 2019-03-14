@@ -31,320 +31,240 @@
         <div class = 'container-add'><button class = 'input-buttons' id = 'badd'>+</button></div>
         <div class = 'container-0'><button class = 'input-buttons' id = 'b0'>0</button></div>
         <div class = 'container-dot'><button class = 'input-buttons' id = 'bdot'>.</button></div>
-        <div class = 'container-del'><button class = 'bback'>del</button></div>
+        <div class = 'container-del'><button class = 'bback' id = 'bback'>del</button></div>
         <div class = 'container-sub'><button class = 'input-buttons' id = 'bsub'>-</button></div>
         <div class = 'container-clear'><button id = 'bclear'>c</button></div>
         <div class = 'container-enter'><button id = 'benter'>=</button></div>
     </div>
     </div>
    
-
+    
     <script>
 
     // declerations
     const inputButtons = document.querySelectorAll('button');
-    let disp = {};
-    let dispArr = [];
-    let result = 0;
-    let opFlag = 0;
-    let last = '';
-    let back = '';
-    let final = 0;
-    let lastSpaceIndex = 0;
     let invalidFlag = 0;
-    let elemArr = [];
-    let shorterDispText = '';
-    let evenShorterDispText = '';
-    let dotCnt = 0;
+    let enterFlag = 3;
+    let arr = [];
 
+    //instructions before any inputs
+    if (enterFlag == 3) document.querySelector('.input').innerHTML = '~use mouse or keyboard~';
 
-    // defines math functions
-    function add (x,y) {
+    // event listeners for keys and mouse clicks
+    document.addEventListener('keydown',(e) => processInputs(e.key));
 
-        // converts from number strings from input field
-        if (typeof x != 'number') x = Number(x);
-        if (typeof y != 'number') y = Number(y);
-        return x + y;
-    }
-    function subtract (x,y) {
-        if (typeof x != 'number') x = Number(x);
-        if (typeof y != 'number') y = Number(y);
-        return x - y;
-    }
-    function multiply (x,y) {
-        if (typeof x != 'number') x = Number(x);
-        if (typeof y != 'number') y = Number(y);
-        return x * y;
-    }
-    function divide (x,y) {
-        if (typeof x != 'number') x = Number(x);
-        if (typeof y != 'number') y = Number(y);
-        return x / y;  
-    }
-
-    //button input handlers    
     inputButtons.forEach((button) => {
         button.addEventListener('click', (e) => {
-
-            // when buttons that add to the input are pressed
-            if(e.path[0].className == 'input-buttons') {
-
-                // if the results and inputs of a previous calculation is still being displayed, clear it before adding more to input
-                if (opFlag == 1) clear();
-                opFlag = 0;
-
-                // padd operators on left and right 
-                if (e.path[0].id == 'bmul' || e.path[0].id == 'bdiv' || e.path[0].id == 'badd' || e.path[0].id == 'bsub') {
-                    document.querySelector('.input').innerHTML += ' ' + button.textContent + ' ';
-
-                    // last will be used later for the back function, it is the last entered character
-                    last = button.textContent;
-                } else {
-
-                    // add button text to input string (button text is hidden with CSS justify trick)
-                    document.querySelector('.input').innerHTML += button.textContent;
-                    last = button.textContent;
-                }   
-
-            // when enter button is pressed
-            } else if (e.path[0].id == 'benter') {
-
-                // removes possible double space between consecutive operators
-                dispText = document.querySelector('.input').textContent.replace('  ',' ');
-
-                // removes possible leading space
-                if (dispText.charAt(0) == ' ') {
-                    shorterDispText = dispText.slice(1, dispText.length);
-                } else {
-                    shorterDispText = dispText;
-                }
-
-                // removes possible last space
-                if (shorterDispText.charAt(shorterDispText.length - 1) == ' ') {
-                    evenShorterDispText = shorterDispText.slice(0, shorterDispText.length - 1);
-                } else {
-                    evenShorterDispText = shorterDispText;
-                }
-
-                // splits dispText string into dispArr array
-                dispArr = shorterDispText.split(' ');
-
-                // changes possible  ['-','x'] at beginning into ['-x']
-                if (dispArr[0] == '-') dispArr.splice(0, 2, 0 - dispArr[1])
-
-                //removes mysterious undefined item from end or dispArr
-                if (typeof dispArr[dispArr.length - 1] == 'undefined') dispArr.pop();
-
-                //removes possible 0 that may occur at end of array if second to last item was an operator
-                if (dispArr[dispArr.length - 1] == 0) dispArr.splice(dispArr.length-1,1);
-
-                // executes math functions  
-                operate();
-
-                //for clearing the input when more buttons are pressed later
-                opFlag = 1;
-
-            // when clear button is pressed, clear input and result fields
-            } else if (e.path[0].id == 'bclear') {
-                clear();
-
-            // when back button is pressed
-            } else if (e.path[0].className == 'bback') {
-                back = document.querySelector('.input').textContent;
-
-                // check if the last element is a space (would follow an oprator)
-                lastSpaceIndex = back.lastIndexOf(' ');
-
-                // if the last element is a space (therefore the one before that is an operator and before that is another space), slice all three elements off the end
-                if (lastSpaceIndex == back.length - 1) {
-                    document.querySelector('.input').textContent = document.querySelector('.input').textContent.slice(0,lastSpaceIndex - 1);
-                } else {
-
-                // if the last element is a number, slice it off the end
-                    document.querySelector('.input').textContent = document.querySelector('.input').textContent.slice(0,back.length - 1);
-                    
-                }
-
-            }
+            processInputs(e.path[0].id);
         })
     });
 
+    // enter the input into the input string or perform operation on it
+    function processInputs(key) {
+    
+    // the id's can't start with a number, but the key.code does, so this converts the mouse click id's to the new key standard
+        switch(key) {
+            case 'b0':
+                key = '0'
+                break;
+            case 'b1':
+                key = '1'
+                break;
+            case 'b2':
+                key = '2'
+                break;
+            case 'b3':
+                key = '3'
+                break;
+            case 'b4':
+                key = '4'
+                break;
+            case 'b5':
+                key = '5'
+                break;
+            case 'b6':
+                key = '6'
+                break;
+            case 'b7':
+                key = '7'
+                break;
+            case 'b8':
+                key = '8'
+                break;
+            case 'b9':
+                key = '9'
+                break;
+            case 'bdot':
+                key = '.'
+                break;
+            case 'bback':
+                key = 'Backspace'
+                break;
+            case 'bmul':
+                key = '*'
+                break;
+            case 'bdiv':
+                key = '/'
+                break;
+            case 'badd':
+                key = '+'
+                break;
+            case 'bsub':
+                key = '-'
+                break;
+            case 'benter':
+                key = 'Enter'
+                break;
+            case 'bclear':
+                key = 'c'
+                break;
+        }
 
+        // read input and output
+        let ans = document.querySelector('.result').textContent;
+        let str = document.querySelector('.input').textContent.replace('ans', ans);
 
-    document.addEventListener('keydown', function(e) {
-// console.log(e.key)
         // when buttons that add to the input are pressed
-        if(isInput(e.key)) {
+        if(isInput(key)) {
 
-            // if the results and inputs of a previous calculation is still being displayed, clear it before adding more to input
-            if (opFlag == 1) clear();
-            opFlag = 0;
-
-            // padd operators on left and right 
-            if (e.key == '*' || e.key == '/' || e.key == '+' || e.key == '-') {
-                document.querySelector('.input').innerHTML += ' ' + e.key + ' ';
-
-                // last will be used later for the back function, it is the last entered character
-                last = e.key;
-            } else {
-
-                // add button text to input string (button text is hidden with CSS justify trick)
-                document.querySelector('.input').innerHTML += e.key;
-                last = e.key;
-            }   
-
-            // when enter button is pressed
-        } else if (e.key == 'Enter') {
-
-            // removes possible double space between consecutive operators
-            dispText = document.querySelector('.input').textContent.replace('  ',' ');
-
-            // removes possible leading space
-            if (dispText.charAt(0) == ' ') {
-                shorterDispText = dispText.slice(1, dispText.length);
-            } else {
-                shorterDispText = dispText;
+            // if entering new numbers after last pressing enter, clear input, if the last result was invalid, also clear output
+            if(enterFlag != 0) {
+                clearInput();
+                if (invalidFlag == 1) {
+                    clearOutput();
+                    invalidFlag = 0;
+                }
             }
+            
+            if (isOp(key)) {
 
-            // removes possible last space
-            if (shorterDispText.charAt(shorterDispText.length - 1) == ' ') {
-                evenShorterDispText = shorterDispText.slice(0, shorterDispText.length - 1);
+                // if it's the first entry since pressing enter, the last result was not invalid, and does not equal zero, add 'ans' at the beginning of the input
+                if (enterFlag == 1 && invalidFlag == 0 && ans != '0') {
+                document.querySelector('.input').innerHTML += 'ans ' + key + ' ';
+                }
+                // otherwese, print the operator padded by spaces
+                else {
+                document.querySelector('.input').innerHTML += ' ' + key + ' ';
+
+                }
+            // if it's a number and the first entry since pressing enter, clear the result then add new text
+            } else if (enterFlag == 1) {
+                clearOutput();
+                document.querySelector('.input').innerHTML += key;
             } else {
-                evenShorterDispText = shorterDispText;
+                // if it's a number, simply add button text to input string (button text is hidden with CSS justify trick)
+                document.querySelector('.input').innerHTML += key;
             }
+            // reset enterFlag, since now, enter is definitely not the last key to be pressed
+            enterFlag= 0;
+        } 
+        
+        // when enter button is pressed
+        else if (key == 'Enter') {
+            
+            enterFlag = 1;
 
-            // splits dispText string into dispArr array
-            dispArr = shorterDispText.split(' ');
+            // splits input text into a space delineated array
+            arr = str.split(' ');
 
-            // changes possible  ['-','x'] at beginning into [-x]
-            if (dispArr[0] == '-') dispArr.splice(0, 2, 0 - dispArr[1])
+            // turns non-operators from strings into numbers
+            arr = arr.map(item => (isOp(item) || item == '') ? item : Number(item));
+            
+console.log('arr: ', arr)
+            // if any items in arr are (an empty string that isn't a zero) or (NaN that isn't an operator) throw invalid flag
+            if (str.includes('  ') ||                                                                  // double operator
+                arr[0] == '' && arr[0] !== 0 && (arr[1] == '*' || arr[1] == '/' || arr[1] == '+') ||   // begins with a * or / or +
+                str.charAt(str.length - 1) == ' ' && isOp(arr[arr.length - 2]) ||                      // ends in an operator
+                arr.some(item => isNaN(item) && !isOp(item))) invalidFlag = 1;                         // contains Nan (that isn't an operator)... so werid decimals
 
-            //removes mysterious undefined item from end or dispArr
-            if (typeof dispArr[dispArr.length - 1] == 'undefined') dispArr.pop();
-
-            //removes possible 0 that may occur at end of array if second to last item was an operator
-            if (dispArr[dispArr.length - 1] == 0) dispArr.splice(dispArr.length-1,1);
-
-            // executes math functions  
-            console.log(dispArr);
+            // perform operation described by input 
             operate();
 
-            //for clearing the input when more buttons are pressed later
-            opFlag = 1;
-
         // when clear button is pressed, clear input and result fields
-        } else if (e.key == 'c') {
-            clear();
+        } else if (key == 'c') {
+            clearInput();
+            clearOutput();
+
 
         // when back button is pressed
-        } else if (e.key == 'Backspace') {
-            back = document.querySelector('.input').textContent;
+        } else if (key == 'Backspace') {
 
             // check if the last element is a space (would follow an oprator)
-            lastSpaceIndex = back.lastIndexOf(' ');
+            // if so, slice all three elements off the end
+            if (str.lastIndexOf(' ') == str.length - 1) {
+                document.querySelector('.input').textContent = document.querySelector('.input').textContent.slice(0,str.lastIndexOf(' ')-2);
+            } else {
 
-        // if the last element is a space (therefore the one before that is an operator and before that is another space), slice all three elements off the end
-        if (lastSpaceIndex == back.length - 1) {
-            document.querySelector('.input').textContent = document.querySelector('.input').textContent.slice(0,lastSpaceIndex - 1);
-        } else {
-
-        // if the last element is a number, slice it off the end
-            document.querySelector('.input').textContent = document.querySelector('.input').textContent.slice(0,back.length - 1);
-            
-        }
+            // if the last element is a number, slice it off the end
+                document.querySelector('.input').textContent = document.querySelector('.input').textContent.slice(0,str.length - 1);
+            }
 
         }
-    });
+    }
 
-
-
-
-    // executes math functions on dispArr
+    // executes math functions on arr
     function operate() {
         
-        invalidFlag = 0;
-
-        // checks for weird decimals
-        for (i = 0 ; i < dispArr.length ; i++) {
-            dotCnt = 0;
-
-            // dispArr (a string) gets split into an array of strings, one element per character
-            if (typeof dispArr[i] == 'string'){
-            elemArr = dispArr[i].split('');
-        
-                // if elemArr contains more than two periods
-                for (j = 0 ; j < elemArr.length ; j++) {
-                    if (elemArr[j] == '.') dotCnt++;
+        // runs through arr, checks for multiplication and division, executes if found
+        if (!invalidFlag) {
+            for (i = 0 ; i < arr.length ; i++) {
+                
+                if (arr[i] == '*') {
+                    arr.splice(i - 1, 3, multiply(arr[i - 1], arr[i + 1]));
+                    i = 0;
                 }
-                if (dotCnt > 1) invalidFlag = 1;
+                if (arr[i] == '/') {
+                    arr.splice(i - 1, 3, divide(arr[i - 1], arr[i + 1]));
+                    i = 0;
+                }
             }
-        }
 
-        // checks for more than one operator in a row
-        for (i = 0 ; i < dispArr.length ; i++) {
-            if (isOp(dispArr[i]) && isOp(dispArr[i + 1]) || isOp(dispArr[dispArr.length - 1])) {
-                invalidFlag = 1;
-                console.log('operator error')
-                console.log(typeof dispArr[dispArr.length - 1])
+            // runs through arr again, checks for addition and subtraction, executes if found
+            for (i = 0 ; i < arr.length ; i++) {
 
-            }
-        }
-
-        // runs through dispArr, checks for multiplication and division, executes if found
-        for (i = 0 ; i < dispArr.length ; i++) {
-            
-            if (dispArr[i] == '*') {
-                dispArr.splice(i - 1, 3, multiply(dispArr[i - 1], dispArr[i + 1]));
-                i = 0;
-            }
-            if (dispArr[i] == '/') {
-                dispArr.splice(i - 1, 3, divide(dispArr[i - 1], dispArr[i + 1]));
-                i = 0;
-            }
-        }
-
-        // runs through dispArr again, checks for addition and subtraction, executes if found
-        for (i = 0 ; i < dispArr.length ; i++) {
-
-            if (dispArr[i] == '+') {
-                dispArr.splice(i - 1, 3, add(dispArr[i - 1],dispArr[i + 1]));
-                i = 0;
-            }
-            if (dispArr[i] == '-') {
-                dispArr.splice(i - 1, 3, subtract(dispArr[i - 1],dispArr[i + 1]));
-                i = 0;
+                if (arr[i] == '+') {
+                    arr.splice(i - 1, 3, add(arr[i - 1],arr[i + 1]));
+                    i = 0;
+                }
+                if (arr[i] == '-') {
+                    arr.splice(i - 1, 3, subtract(arr[i - 1],arr[i + 1]));
+                    i = 0;
+                }
             }
         }
         
         //prints the result after rounding it (if valid)
         if (invalidFlag == 0) {
-            final = dispArr[0];
-            if (typeof final != 'number') final = Number(final);
-            if (final.countDecimals() > 3) final = final.toFixed(3);
-            document.querySelector('.result').innerHTML = final;
+            if (arr[0].countDecimals() > 3) arr[0] = arr[0].toFixed(3);
+            if ( arr[0] > 1000000000) arr[0] = expo(arr[0], 3);
+            document.querySelector('.result').innerHTML = arr[0];
         } else {
             document.querySelector('.result').innerHTML = 'invalid input';
         }
-
     }
 
-    // clears the input and result
-    function clear() {
+    // returns in exponential format
+    function expo(x, f) {
+        return Number.parseFloat(x).toExponential(f);   
+    }
+
+    // clears the input
+    function clearInput() {
         document.querySelector('.input').innerHTML = '';
-        document.querySelector('.result').innerHTML = '';
-        disp = {};
-        dispArr = [];
-        result = 0;
-        opFlag = 0;
-        last = '';
-        back = '';
-        lastSpaceIndex = 0;
-
+        arr = [];
+        str = '';
     }
 
-    // determines if a is a symbol rather than a number
+    // clears the output
+    function clearOutput() {
+        document.querySelector('.result').innerHTML = '';
+        arr = [];
+        str = '';
+    }
+
+    // determines if it is an operator rather than a number
     function isOp(a) {
-        if (a == '*' || a == '/' || a == '+' || a == '-' || a== '.' || a== 'undefined') {
+        if (a == '*' || a == '/' || a == '+' || a == '-' ) {
             return 1;
         } else return 0;
     }
@@ -361,6 +281,20 @@
         if(Math.floor(this.valueOf()) === this.valueOf()) return 0;
         return this.toString().split(".")[1].length || 0; 
     }   
+
+    // defines math functions
+    function add (x,y) {
+        return x + y;
+    }
+    function subtract (x,y) {
+        return x - y;
+    }
+    function multiply (x,y) {
+        return x * y;
+    }
+    function divide (x,y) {
+        return x / y;  
+    }
 
     </script>
 </body>

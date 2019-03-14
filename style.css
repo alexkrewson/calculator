@@ -1,30 +1,11 @@
 body {
     
-    /* background-image: linear-gradient(to right, rgb(6, 190, 182), rgb(72, 177, 191));
-    background-position-x: initial;
-    background-position-y: initial;
-    background-size: initial;
-    
-    background-attachment: initial;
-    background-origin: initial;
-    background-clip: initial; */
-    background-color: hsl(160, 44%, 62%);
+    background-color: hsl(187, 46%, 42%);
 
-}
-
-.whole-thing-container {
-    /* height: 720px;
-    width: 510px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 100px;
-    border-radius:  20px; */
 }
 
 .whole-thing {
-    background-color: rgb(62, 145, 87);
-    /* height: 100%;
-    width: 100%; */
+    background-color: hsl(252, 14%, 34%);
     height: 680px;
     width: 510px;
     margin-left: auto;
@@ -32,8 +13,6 @@ body {
     margin-top: 100px;
     border-radius:  20px;
     border: solid;
-    /* align-items: center; */
-    /* text-align: center; */
 }
 
 .bumper {
@@ -56,7 +35,7 @@ body {
 .container-input {
     grid-column: 1/5;
     grid-row: 1/3;
-    background-color: rgb(191, 201, 193);
+    background-color: rgb(209, 240, 177);
     border-radius: 10px;
     height: 95%;
     width: 98%; 
@@ -72,21 +51,24 @@ body {
     overflow: hidden;
     font-weight: bold;
     position: relative;
-    top: 20px;
-    left: 20px;
-    display: inline;
+    top: 5px;
+    left: 14px;
     word-wrap: none;
+    margin-top: 5px;
+
+    height: 40px;
 }
 
 .result {
-    float: right;
-    float: bottom;
     overflow: hidden;
     text-align: right;
-    width: 450px;
+    position: relative;
+    top: 25%;
+    left: 10%;
+    width: 350px;
     margin-right: 10px;
-    margin-top: 80px;
     word-wrap: none;
+    height: 40px;
 }
 
 .container-enter {
@@ -105,7 +87,7 @@ button {
     border-radius: 10px;
     outline: none;
     background-color: rgb(44, 85, 90);
-    color:   rgb(191, 201, 193);
+    color:   black;
     font-size: 30px;
     font-weight: bold;
     border: solid black;

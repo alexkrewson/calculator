@@ -1,6 +1,24 @@
-works okay
+works great
 
-to do:
+Resolved all the bugs I know of. Changed the colors.
 
-* keep the buttons lined up when zoomed
+There's a secret feature. If you get 'ans' on the screen, backspace one to it to concatinate a new number on to the previous result.
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+\
+
+
 
