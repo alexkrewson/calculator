@@ -1,6 +1,6 @@
 body {
     
-    background-color: hsl(187, 97%, 13%);
+    background-color: hsl(187, 100%, 15%);
 
 }
 
@@ -86,8 +86,8 @@ button {
     height: 60px;
     border-radius: 10px;
     outline: none;
-    background-color: hsl(128, 100%, 15%);
-    color:   black;
+    background-color:  hsl(184, 100%, 5%);
+    color:   hsl(187, 25%, 35%);
     font-size: 30px;
     font-weight: bold;
     border: solid black;
@@ -95,11 +95,12 @@ button {
 
 button:hover {
     /* transform: scale(1.1); */
-    background-color: hsl(128, 100%, 13%);
-}
+    background-color: hsl(180, 100%, 2%);
+ }
+
 
 button:active {
-    transform: scale(.9);
+    transform: scale(0.95);
 }
 
 

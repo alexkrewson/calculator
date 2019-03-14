@@ -132,7 +132,6 @@
                 clearInput();
                 if (invalidFlag == 1) {
                     clearOutput();
-                    invalidFlag = 0;
                 }
             }
             
@@ -140,7 +139,8 @@
 
                 // if it's the first entry since pressing enter, the last result was not invalid, and does not equal zero, add 'ans' at the beginning of the input
                 if (enterFlag == 1 && invalidFlag == 0 && ans != '0') {
-                document.querySelector('.input').innerHTML += 'ans ' + key + ' ';
+                document.querySelector('.input').innerHTML += 'ans ' + key  + ' ';
+                console.log(invalidFlag)
                 }
                 // otherwese, print the operator padded by spaces
                 else {
@@ -157,6 +157,7 @@
             }
             // reset enterFlag, since now, enter is definitely not the last key to be pressed
             enterFlag= 0;
+            invalidFlag = 0;
         } 
         
         // when enter button is pressed
