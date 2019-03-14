@@ -170,7 +170,6 @@
             // turns non-operators from strings into numbers
             arr = arr.map(item => (isOp(item) || item == '') ? item : Number(item));
             
-console.log('arr: ', arr)
             // if any items in arr are (an empty string that isn't a zero) or (NaN that isn't an operator) throw invalid flag
             if (str.includes('  ') ||                                                                  // double operator
                 arr[0] == '' && arr[0] !== 0 && (arr[1] == '*' || arr[1] == '/' || arr[1] == '+') ||   // begins with a * or / or +
